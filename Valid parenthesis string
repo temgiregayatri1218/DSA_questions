@@ -1,0 +1,36 @@
+/*678 Valid parenthesis string Leetcode answer */
+
+class Solution {
+public:
+    bool checkValidString(string s)
+    {
+        
+       stack<int> leftParen, star;
+    for (int i = 0; i < s.size(); ++i) {
+        char c = s[i];
+        if (c == '(') {
+            leftParen.push(i);
+        } else if (c == '*') {
+            star.push(i);
+        } else {
+            if (!leftParen.empty()) {
+                leftParen.pop();
+            } else if (!star.empty()) {
+                star.pop();
+            } else {
+                return false;
+            }
+        }
+    }
+
+    while (!leftParen.empty() && !star.empty()) {
+        if (leftParen.top() > star.top()) {
+            return false;
+        }
+        leftParen.pop();
+        star.pop();
+    }
+
+    return leftParen.empty();
+    }
+};
