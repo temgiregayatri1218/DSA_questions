@@ -1,0 +1,46 @@
+/*860 Lemonade Change  leetcode problem solution */
+
+
+class Solution {
+public:
+    bool lemonadeChange(vector<int>& bills) 
+    {
+      vector<int> ans(3,0);
+      ans[0]=0;
+      ans[1]=0;
+      ans[2] = 0;
+      for(auto x: bills)
+      {
+            if(x==5)
+            {
+                ans[0]++;
+            }
+            else if(x==10)
+            {
+                ans[1]++;
+                if(ans[0]==0) return false;
+                else  ans[0]--;
+            }
+            else if(x==20)
+            {
+                ans[2]++;
+                if(ans[0]==0 && ans[1]==0) return false;
+                else if(ans[0]<=2 && ans[1]==0) return false;
+                else if(ans[0]>=3 && ans[1]==0) {
+                    ans[0]--;
+                    ans[0]--;
+                    ans[0]--;
+                }
+                else if(ans[0]==0)  return false;
+                else
+                {
+                    ans[0]--;
+                    ans[1]--;
+                }
+               
+            }
+      }
+      return true;
+        
+    }
+};
