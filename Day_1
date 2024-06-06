@@ -1,0 +1,32 @@
+/* Merge K-sorted Array */
+
+class Solution {
+public:
+    ListNode* mergeKLists(vector<ListNode*>& lists) 
+    {
+       vector<int>ans;
+       for(int i =0;i<lists.size();i++)
+       {
+        ListNode*temp = lists[i];
+        while(temp!=NULL)
+        {
+            ans.push_back(temp->val);
+            temp = temp->next;
+        }
+
+       }
+       if(ans.empty()) return NULL;
+
+       sort(ans.begin(),ans.end());
+       ListNode*temp= new ListNode(ans[0]);
+       ListNode*head = temp;
+
+       for(int i=1;i<ans.size();i++)
+       {
+            ListNode*temp1= new ListNode(ans[i]);
+            temp->next = temp1;
+            temp = temp->next;
+       }
+       return head;
+    }
+};
