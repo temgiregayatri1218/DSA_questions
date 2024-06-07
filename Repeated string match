@@ -1,0 +1,28 @@
+/* Repeated string match */
+
+class Solution {
+public:
+    int repeatedStringMatch(string a, string b) 
+    {
+       
+        string ans = a;
+        int cnt =1;
+        int  i =0;
+        while(ans.find(b) == std::string::npos && ans.length() <= 10000)
+        {
+                ans+=a;
+                // cout<<ans<<endl;
+                cnt++;
+                if(ans.length()> b.length()*4)
+                {
+                    break;
+                }
+        }
+        if(ans.find(b)==std::string::npos)
+        {
+            return -1;
+        }
+        return cnt;
+        
+    }
+};
