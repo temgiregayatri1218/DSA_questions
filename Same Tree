@@ -1,0 +1,42 @@
+class Solution {
+public:
+    void identcal(TreeNode*p,TreeNode*q, bool &ans)
+    {
+        if(p==NULL && q==NULL)
+        {
+             return;
+        }
+           
+        if(p==NULL && q!= NULL)
+        {
+            ans = false;
+            return;
+        }
+        if(p!=NULL && q==NULL)
+        {
+            ans = false;
+            return;
+        }
+        if(p->val!= q->val)
+        {
+            ans = false;
+            return;
+        }
+        identcal(p->left,q->left,ans);
+        identcal(p->right,q->right,ans);
+
+    }
+    bool isSameTree(TreeNode* p, TreeNode* q) 
+    {
+        if(p==nullptr && q==nullptr)
+        {
+                return true;
+        }
+            
+        
+        bool ans = true;
+        identcal(p,q,ans);
+        return ans;
+        
+    }
+};
