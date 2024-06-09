@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int findContentChildren(vector<int>& g, vector<int>& s) 
+    {
+        sort(g.begin(),g.end());
+        sort(s.begin(),s.end());
+        int k=0;
+        int n = s.size();
+        vector<int>visited(n,0);
+        int ans=0;
+        int cnt=0;
+        for(int i=0;i<g.size();i++)
+        {
+            for(int j=ans;j<s.size();j++)
+            {
+                if(g[i]<=s[j] && visited[j]!=1)
+                {
+                    cnt++;
+                    ans = j+1;
+                    visited[j]=1;
+                    break;
+                }
+            }
+        }
+        return cnt;
+
+        
+    }
+};
