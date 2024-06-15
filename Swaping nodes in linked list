@@ -1,0 +1,52 @@
+class Solution {
+public:
+    ListNode* swapNodes(ListNode* head, int k) 
+    {
+        // if(head==NULL)
+        //     return head;
+        // int cnt = 0;
+        // ListNode*temp = head;
+        // ListNode*temp1;
+        // while(temp)
+        // {
+        //     cnt++;
+        //     if(cnt==k)
+        //     {
+        //         temp1 = temp;
+        //     }
+        //     temp = temp->next;
+        // }
+        // if(cnt%2==1 && cnt/2+1 == k)
+        //     return head;
+
+        // ListNode*temp3;
+        // temp = head;
+        // int no=0;
+        // while(no < (cnt - k -1))
+        // {
+        //     temp = temp->next;
+        // }
+        // temp3 = temp->next;
+        
+        vector<int>ans;
+        ListNode*temp = head;
+        while(temp)
+        {
+            ans.push_back(temp->val);
+            temp=temp->next;
+        }
+        if(ans.size()< k)
+            return head;
+        int n = ans.size();
+        swap(ans[k-1],ans[n-k]);
+
+        ListNode*h1 = new ListNode(ans[0]);
+        ListNode* h2 = h1;
+        for(int i=1;i<n;i++)
+        {
+            h1->next = new ListNode(ans[i]);
+            h1 = h1->next;
+        }
+        return h2;
+    }
+};
