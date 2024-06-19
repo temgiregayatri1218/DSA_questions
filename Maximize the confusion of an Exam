@@ -1,0 +1,25 @@
+class Solution {
+public:
+    int maxConsecutiveAnswers(string answerKey, int k) 
+    {
+        int i=0;
+        int m = 0;
+        int j = answerKey.size();
+        unordered_map<char,int>mmp;
+        int maxi = INT_MIN;
+        while(i<j)
+        {
+            mmp[answerKey[i]]++;
+            i++;
+            while(min(mmp['T'],mmp['F']) > k)
+            {
+                mmp[answerKey[m]]--;
+                m++;
+            }
+            maxi = max(i-m,maxi);
+
+        }        
+
+        return maxi;
+    }
+};
